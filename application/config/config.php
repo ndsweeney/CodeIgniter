@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= '';
+$config['base_url']	= 'http://ndsweeney/sandpit/CodeIgniter';
 
 /*
 |--------------------------------------------------------------------------
@@ -356,7 +356,10 @@ $config['rewrite_short_tags'] = FALSE;
 |
 */
 $config['proxy_ips'] = '';
-
+/*
+My Sql Connection Run
+*/
+$active_group = "test";
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */
