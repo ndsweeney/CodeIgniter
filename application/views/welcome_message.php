@@ -80,8 +80,8 @@
 
 		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
 		
-		<? $this->load->database(); ?>
-		<? $query = $this->db->query('SELECT id, name, product, cost FROM test');
+		<? $this->load->database($config); 
+		 $query = $this->db->query('SELECT id, name, product, cost FROM test');
 
 foreach ($query->result() as $row)
 {
@@ -91,7 +91,8 @@ foreach ($query->result() as $row)
     echo $row->cost;
 }
 
-echo 'Total Results: ' . $query->num_rows(); ?>
+echo 'Total Results: ' . $query->num_rows(); 
+?>
 		
 	</div>
 
