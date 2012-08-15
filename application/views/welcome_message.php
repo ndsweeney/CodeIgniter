@@ -87,8 +87,8 @@
 		
 		$sql = "SELECT * FROM table";
 		//echo "test";
-		/*echo $sql;
-		 $query = $this->db->query($sql);
+		echo $sql;
+		/* $query = $this->db->query($sql);
 
 foreach ($query->result() as $row)
 {
