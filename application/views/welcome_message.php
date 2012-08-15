@@ -85,7 +85,7 @@
 		$this->load->database(); 
 		
 		
-		$sql = "SELECT * FROM table";
+		$sql = "SELECT * FROM table;";
 		//echo "test";
 		echo $sql;
 		 $query = $this->db->query($sql);
