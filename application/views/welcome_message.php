@@ -105,9 +105,10 @@ $query = $this->db->query("SELECT * FROM `table`");
 
 foreach ($query->result() as $row)
 {
-   echo $row->title;
+   echo $row->id;
    echo $row->name;
-   echo $row->body;
+   echo $row->product;
+   echo $row->cost;
 }
 ?>
 		
