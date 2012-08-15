@@ -80,9 +80,11 @@
 
 		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
 		
-		<?php $this->load->database(); 
-		$sql = "SELECT * FROM 'table'";
-		echo "test";
+		<?php 
+		
+		$this->load->database(); 
+		$sql = "SELECT * FROM table";
+		//echo "test";
 		echo $sql;
 		 $query = $this->db->query($sql);
 
@@ -96,6 +98,15 @@
 
 echo 'Total Results: ' . $query->num_rows(); 
 */
+echo "Break";
+$query = $this->db->query("SELECT * FROM table");
+
+foreach ($query->result() as $row)
+{
+   echo $row->title;
+   echo $row->name;
+   echo $row->body;
+}
 ?>
 		
 	</div>
