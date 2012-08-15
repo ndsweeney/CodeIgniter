@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://ndsweeney/sandpit/CodeIgniter';
+$config['base_url']	= 'http://ndsweeney.co.uk/sandpit/CodeIgniter/';
 
 /*
 |--------------------------------------------------------------------------
