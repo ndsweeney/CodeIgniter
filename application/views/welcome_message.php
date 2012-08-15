@@ -85,11 +85,11 @@
 		$this->load->database(); 
 		
 		
-		$sql = "SELECT * FROM table;";
+		/*$sql = "SELECT * FROM table;";
 		//echo "test";
 		echo $sql;
 		 $query = $this->db->query($sql);
-/*
+
 foreach ($query->result() as $row)
 {
     echo $row->id;
@@ -99,7 +99,7 @@ foreach ($query->result() as $row)
 }
 
 echo 'Total Results: ' . $query->num_rows(); 
-
+*/
 echo "Break";
 $query = $this->db->query("SELECT * FROM table");
 
@@ -108,7 +108,7 @@ foreach ($query->result() as $row)
    echo $row->title;
    echo $row->name;
    echo $row->body;
-}*/
+}
 ?>
 		
 	</div>
