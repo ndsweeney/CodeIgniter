@@ -81,7 +81,7 @@
 		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
 		
 		<? $this->load->database($config); 
-		 $query = $this->db->query('SELECT id, name, product, cost FROM test');
+		 $query = $this->db->query('SELECT id, name, product, cost FROM table');
 
 foreach ($query->result() as $row)
 {
