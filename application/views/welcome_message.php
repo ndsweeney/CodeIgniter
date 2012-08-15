@@ -101,7 +101,7 @@ foreach ($query->result() as $row)
 echo 'Total Results: ' . $query->num_rows(); 
 */
 echo "Break";
-$query = $this->db->query("SELECT * FROM table");
+$query = $this->db->query("SELECT * FROM `table`");
 
 foreach ($query->result() as $row)
 {
