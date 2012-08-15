@@ -83,9 +83,11 @@
 		<?php 
 		
 		$this->load->database(); 
-		/*$sql = "SELECT * FROM table";
+		
+		
+		$sql = "SELECT * FROM table";
 		//echo "test";
-		echo $sql;
+		/*echo $sql;
 		 $query = $this->db->query($sql);
 
 foreach ($query->result() as $row)
