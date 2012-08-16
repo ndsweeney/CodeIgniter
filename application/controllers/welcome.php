@@ -21,6 +21,17 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('welcome_message');
 	}
+	
+   function index()
+	 {
+           $this->load->library('csvreader');
+    
+           $filePath = './csvfile.csv';
+      
+           $data['csvData'] = $this->csvreader->parse_file($filePath);
+
+           $this->load->view('csv_view', $data);
+	 }
 }
 
 /* End of file welcome.php */
