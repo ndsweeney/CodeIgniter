@@ -1,81 +1,70 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * CSVReader Class
- * 
- * $Id: csvreader.php 54 2009-10-21 21:01:52Z Pierre-Jean $
- * 
- * Allows to retrieve a CSV file content as a two dimensional array.
- * Optionally, the first text line may contains the column names to
- * be used to retrieve fields values (default).
- * 
- * Let's consider the following CSV formatted data:
- * 
- *        "col1";"col2";"col3"
- *         "11";"12";"13"
- *         "21;"22;"2;3"
- * 
- * It's returned as follow by the parsing operation with first line
- * used to name fields:
- * 
- *         Array(
- *             [0] => Array(
- *                     [col1] => 11,
- *                     [col2] => 12,
- *                     [col3] => 13
- *             )
- *             [1] => Array(
- *                     [col1] => 21,
- *                     [col2] => 22,
- *                     [col3] => 2;3
- *             )
- *        )
- * 
- * @author        Pierre-Jean Turpeau
- * @link        http://www.codeigniter.com/wiki/CSVReader
- */
+* CSVReader Class
+*
+* $Id: csvreader.php 147 2007-07-09 23:12:45Z Pierre-Jean $
+*
+* Allows to retrieve a CSV file content as a two dimensional array.
+* The first text line shall contains the column names.
+*
+* @author        Pierre-Jean Turpeau
+* @link        http://www.codeigniter.com/wiki/CSVReader
+*/
 class CSVReader {
     
-    var $fields;            /** columns names retrieved after parsing */ 
-    var $separator = ';';    /** separator used to explode each line */
-    var $enclosure = '"';    /** enclosure used to decorate each field */
+    var $fields;        /** columns names retrieved after parsing */
+    var $separator = ',';    /** separator used to explode each line */
     
-    var $max_row_size = 4096;    /** maximum row size to be used for decoding */
+    /**
+     * Parse a text containing CSV formatted data.
+     *
+     * @access    public
+     * @param    string
+     * @return    array
+     */
+    function parse_text($p_Text) {
+        $lines = explode("\n", $p_Text);
+        return $this->parse_lines($lines);
+    }
     
     /**
      * Parse a file containing CSV formatted data.
      *
      * @access    public
      * @param    string
-     * @param    boolean
      * @return    array
      */
-    function parse_file&#40;$p_Filepath, $p_NamedFields = true&#41; {
-        $content = false;
-        $file = fopen&#40;$p_Filepath, 'r'&#41;;
-        if($p_NamedFields) {
-            $this->fields = fgetcsv($file, $this->max_row_size, $this->separator, $this->enclosure);
-        }
-        while( ($row = fgetcsv($file, $this->max_row_size, $this->separator, $this->enclosure)) != false ) {            
-            if( $row[0] != null ) { // skip empty lines
-                if( !$content ) {
+    function parse_file($p_Filepath) {
+        $lines = file($p_Filepath);
+        return $this->parse_lines($lines);
+    }
+    /**
+     * Parse an array of text lines containing CSV formatted data.
+     *
+     * @access    public
+     * @param    array
+     * @return    array
+     */
+    function parse_lines($p_CSVLines) {    
+        $content = FALSE;
+        foreach( $p_CSVLines as $line_num => $line ) {
+            if( $line != '' ) { // skip empty lines
+                $elements = split($this->separator, $line);
+
+                if( !is_array($content) ) { // the first line contains fields names
+                    $this->fields = $elements;
                     $content = array();
-                }
-                if( $p_NamedFields ) {
-                    $items = array();
-                    
-                    // I prefer to fill the array with values of defined fields
+                } else {
+                    $item = array();
                     foreach( $this->fields as $id => $field ) {
-                        if( isset($row[$id]) ) {
-                            $items[$field] = $row[$id];    
+                        if( isset($elements[$id]) ) {
+                            $item[$field] = $elements[$id];
                         }
                     }
-                    $content[] = $items;
-                } else {
-                    $content[] = $row;
+                    $content[] = $item;
                 }
             }
         }
-        fclose($file);
         return $content;
     }
 }
