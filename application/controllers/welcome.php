@@ -26,7 +26,7 @@ class Welcome extends CI_Controller {
 	 {
            $this->load->library('csvreader');
     
-           $filePath = './csv/csvfile.csv';
+           $filePath = '../csv/csvfile.csv';
       
            $data['csvData'] = $this->csvreader->parse_file($filePath);
 
